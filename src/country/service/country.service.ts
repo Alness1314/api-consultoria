@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { ResponseCountryDto } from '../dto/response-country.dto';
 import { Repository } from 'typeorm';
+import { NotFoundException } from '@nestjs/common/exceptions';
 
 @Injectable()
 export class CountryService {
@@ -17,8 +18,14 @@ export class CountryService {
     return plainToInstance(ResponseCountryDto, countryList);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} country`;
+  async findOne(id: string) {
+    const country = await this._countryRepository.findOne({
+      where: { id: id },
+    });
+    if (country != null) {
+      throw new NotFoundException('country not found');
+    }
+    return plainToInstance(ResponseCountryDto, country);
   }
 
   remove(id: number) {

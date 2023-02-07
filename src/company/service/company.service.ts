@@ -11,6 +11,9 @@ import { CreateCompanyDto } from '../dto/create-company.dto';
 import { UpdateCompanyDto } from '../dto/update-company.dto';
 import { Repository } from 'typeorm/repository/Repository';
 import { plainToInstance } from 'class-transformer';
+import { CountryService } from 'src/country/service/country.service';
+import { StateService } from 'src/state/service/state.service';
+import { CitiesService } from 'src/cities/service/cities.service';
 
 @Injectable()
 export class CompanyService {
