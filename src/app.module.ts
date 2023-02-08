@@ -10,6 +10,8 @@ import { CountryModule } from './country/country.module';
 import { StateModule } from './state/state.module';
 import { CitiesModule } from './cities/cities.module';
 import { AddressModule } from './address/address.module';
+import { TaxplayerModule } from './taxplayer/taxplayer.module';
+import { LegalRepresentativeModule } from './legal-representative/legal-representative.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { AddressModule } from './address/address.module';
     StateModule,
     CitiesModule,
     AddressModule,
+    TaxplayerModule,
+    LegalRepresentativeModule,
   ],
   controllers: [],
   providers: [],
