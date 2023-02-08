@@ -14,7 +14,7 @@ export class StateController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.stateService.findOne(+id);
+    return this.stateService.findOne(id);
   }
 
   @Delete(':id')

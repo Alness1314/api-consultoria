@@ -16,6 +16,6 @@ import { StateModule } from 'src/state/state.module';
   ],
   controllers: [AddressController],
   providers: [AddressService],
-  exports: [TypeOrmModule],
+  exports: [AddressService, TypeOrmModule],
 })
 export class AddressModule {}

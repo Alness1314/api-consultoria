@@ -14,6 +14,7 @@ export class Company {
   id: string;
 
   @Column({
+    name: 'company_name',
     type: 'character varying',
     length: 128,
     nullable: false,
@@ -42,8 +43,8 @@ export class Company {
   phone: string;
 
   @OneToOne(() => Address)
-  @JoinColumn({ name: 'address_id' })
-  addreess: Address;
+  @JoinColumn()
+  address: Address;
 
   @Column({
     type: 'character varying',

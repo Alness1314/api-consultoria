@@ -1,17 +1,12 @@
-import { StateModule } from './../state/state.module';
-import { CountryModule } from './../country/country.module';
-import { CitiesModule } from './../cities/cities.module';
-import { CountryService } from './../country/service/country.service';
-import { CitiesService } from './../cities/service/cities.service';
+import { AddressModule } from './../address/address.module';
 import { Company } from './entities/company.entity';
 import { Module } from '@nestjs/common';
 import { CompanyService } from './service/company.service';
 import { CompanyController } from './controller/company.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { StateService } from 'src/state/service/state.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Company])],
+  imports: [TypeOrmModule.forFeature([Company]), AddressModule],
   controllers: [CompanyController],
   providers: [CompanyService],
 })

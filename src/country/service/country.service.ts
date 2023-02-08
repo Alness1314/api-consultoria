@@ -22,7 +22,7 @@ export class CountryService {
     const country = await this._countryRepository.findOne({
       where: { id: id },
     });
-    if (country != null) {
+    if (!country) {
       throw new NotFoundException('country not found');
     }
     return plainToInstance(ResponseCountryDto, country);

@@ -1,7 +1,7 @@
 import { plainToInstance } from 'class-transformer';
 import { City } from 'src/cities/entities/city.entity';
 import { ResponseCityDto } from './../dto/response-city.dto';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -17,8 +17,14 @@ export class CitiesService {
     return plainToInstance(ResponseCityDto, citiesList);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} city`;
+  async findOne(id: string): Promise<ResponseCityDto> {
+    const city = await this._cityRepository.findOne({
+      where: { id: id },
+    });
+    if (!city) {
+      throw new NotFoundException('country not found');
+    }
+    return plainToInstance(ResponseCityDto, city);
   }
 
   remove(id: number) {

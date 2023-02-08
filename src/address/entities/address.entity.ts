@@ -6,8 +6,8 @@ import {
   CreateDateColumn,
   PrimaryGeneratedColumn,
   Entity,
-  OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity('Address')
@@ -18,6 +18,7 @@ export class Address {
   @Column({
     type: 'character varying',
     length: 128,
+    nullable: true,
   })
   street: string;
 
@@ -25,6 +26,7 @@ export class Address {
     name: 'int_number',
     type: 'character varying',
     length: 32,
+    nullable: true,
   })
   intNumber: string;
 
@@ -32,6 +34,7 @@ export class Address {
     name: 'ext_number',
     type: 'character varying',
     length: 32,
+    nullable: true,
   })
   extNumber: string;
 
@@ -39,25 +42,27 @@ export class Address {
     name: 'zip_code',
     type: 'character varying',
     length: 32,
+    nullable: true,
   })
   zipCode: string;
 
   @Column({
     type: 'character varying',
     length: 64,
+    nullable: true,
   })
   suburb: string;
 
-  @OneToOne(() => City)
-  @JoinColumn({ name: 'city_id' })
+  @ManyToOne(() => City, { eager: true })
+  @JoinColumn()
   city: City;
 
-  @OneToOne(() => State)
-  @JoinColumn({ name: 'state_id' })
+  @ManyToOne(() => State, { eager: true })
+  @JoinColumn()
   state: State;
 
-  @OneToOne(() => Country)
-  @JoinColumn({ name: 'country_id' })
+  @ManyToOne(() => Country, { eager: true })
+  @JoinColumn()
   country: Country;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })

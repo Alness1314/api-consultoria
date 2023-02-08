@@ -14,7 +14,7 @@ export class CitiesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.citiesService.findOne(+id);
+    return this.citiesService.findOne(id);
   }
 
   @Delete(':id')

@@ -1,3 +1,4 @@
+import { CreateAddressDto } from './../../address/dto/create-address.dto';
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
@@ -5,7 +6,6 @@ import {
   IsOptional,
   IsPhoneNumber,
   IsString,
-  IsUUID,
   MinLength,
 } from 'class-validator';
 
@@ -35,13 +35,14 @@ export class CreateCompanyDto {
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsUUID()
-  addreessId: string; //objeto id de direccion
+  //@IsUUID()
+  address: CreateAddressDto; //objeto id de direccion
+  //addressId: string;
 
   @ApiProperty()
   @IsOptional()
   @IsString()
-  imagen?: string; //id de la imagen
+  image?: string; //id de la imagen
 
   //taxpayer: Taxpayer; //relacion uno a uno //@OneToOne(mappedBy = "compania", cascade = CascadeType.ALL)
   //employees: Employees[]; //@OneToMany(mappedBy = "compania", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
